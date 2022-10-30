@@ -1,0 +1,5 @@
+Requirement already satisfied: pyOpenSSL in c:\users\rayani.rocha\anaconda3\lib\site-packages (0.15.1)
+Requirement already satisfied: cryptography>=0.7 in c:\users\rayani.rocha\anaconda3\lib\site-packages (from pyOpenSSL) (37.0.4)
+Requirement already satisfied: six>=1.5.2 in c:\users\rayani.rocha\anaconda3\lib\site-packages (from pyOpenSSL) (1.15.0)
+Requirement already satisfied: cffi>=1.12 in c:\users\rayani.rocha\anaconda3\lib\site-packages (from cryptography>=0.7->pyOpenSSL) (1.14.5)
+Requirement already satisfied: pycparser in c:\users\rayani.rocha\anaconda3\lib\site-packages (from cffi>=1.12->cryptography>=0.7->pyOpenSSL) (2.20)
