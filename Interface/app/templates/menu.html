@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="{{url_for('static', filename='busca.js')}}"></script>
+
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
@@ -20,15 +20,33 @@
             </a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Palavra chave" aria-label="Search" id="busca"/>
-                    <button class="btn btn-outline-success" type="submit">
-                        Pesquisar
-                    </button>
-                </form>
+                    <input class="form-control me-2" type="search" placeholder="Palavra chave" aria-label="Search" id="busca" />
             </div>
         </div>
     </nav>
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.5.1.min.js')}}"></script>
+
+    <script>   $('#busca').keyup(function (e) {
+        //listening if the key pressed is the enter button
+        if (e.which === 13) {
+            //inserting the value of textfield content, you can add if statement to check if the field is null or empty
+            var search_param = $(this).val();
+            //value of field stored into a variable
+            $('p').removeClass('card-text');
+            //remove item_found class attributed to a td AND search all td to find the one that march the search parameter
+            if ($('p:contains("' + search_param + '")').html() !== undefined) {
+                //if there is any td that has that record... then check for the closest tr and add a class with item_found as value
+                $('p:contains("' + search_param + '")').closest('p').attr('class', 'item_found');
+                //add some highlight to it.
+                $('p:contains("' + search_param + '")').closest('p').css({background:'yellow',color:'black'});
+                //then scroll to the item
+                $(window).scrollTop($('.item_found').first().offset().top);
+            } else {
+                //if item is not found display no result found
+                alert("Sorry no result found")
+            }
+        }
+    });</script>
     {% block content %} {% endblock content %}
 </body>
 
